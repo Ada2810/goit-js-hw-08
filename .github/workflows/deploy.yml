@@ -3,14 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # branch-ul tău principal
+      - main # rulează workflow-ul la push în branch-ul principal
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install
@@ -19,8 +19,8 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4 # ultima versiune stabilă
         with:
-          branch: main # branch-ul principal
-          folder: dist # folderul în care sunt fișierele build-uite
+          branch: main # branch-ul principal pentru GitHub Pages
+          folder: dist # înlocuiește `dist` cu folderul în care se află fișierele tale build-uite
           clean: true
